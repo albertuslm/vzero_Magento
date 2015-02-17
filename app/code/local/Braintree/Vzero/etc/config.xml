@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Braintree_Vzero>
+      <!-- declare module's version information for database updates -->
+      <version>0.1.0</version>
+    </Braintree_Vzero>
+  </modules>
+  <global>
+    <!-- IMPORTANT: if you use your own namespace (i.e. CompanyName) you also have to declare blocks group for new module. See topic: http://www.magentocommerce.com/boards/viewthread/22416/#t102732 -->
+    <blocks>
+      <vzero>
+        <class>Braintree_Vzero_Block</class>
+      </vzero>
+    </blocks>
+    <!-- declare model group for new module -->
+    <models>
+      <!-- model group alias to be used in Mage::getModel('newmodule/...') -->
+      <vzero>
+        <!-- base class name for the model group -->
+        <class>Braintree_Vzero_Model</class>
+      </vzero>
+    </models>
+    <!-- declare resource setup for new module -->
+    <resources>
+      <!-- resource identifier -->
+      <vzero_setup>
+        <!-- specify that this resource is a setup resource and used for upgrades -->
+        <setup>
+          <!-- which module to look for install/upgrade files in -->
+          <module>Braintree_Vzero</module>
+        </setup>
+        <!-- specify database connection for this resource -->
+        <connection>
+          <!-- do not create new connection, use predefined core setup connection -->
+          <use>core_setup</use>
+        </connection>
+      </vzero_setup>
+      <vzero_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </vzero_write>
+      <vzero_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </vzero_read>
+    </resources>
+  </global>
+  <!-- declare default configuration values for this module -->
+  <default>
+    <!-- 'payment' configuration section (tab) -->
+    <payment>
+      <vzero>
+        <!-- by default this payment method is inactive -->
+        <active>1</active>
+        <!-- model to handle logic for this payment method -->
+        <model>vzero/vzero</model>
+        <!-- order status for new orders paid by this payment method -->
+        <order_status>processing</order_status>
+        <!-- default title for payment checkout page and order view page -->
+        <title>Braintree V.zero</title>
+        <payment_action>validate</payment_action>
+        <allowspecific>0</allowspecific>
+      </vzero>
+    </payment>
+  </default>
+</config>
